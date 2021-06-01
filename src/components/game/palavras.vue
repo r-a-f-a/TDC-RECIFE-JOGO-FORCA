@@ -9,7 +9,10 @@
 <script>
 export default {
  name:'palavras',
- props: ['gameWord']
+ props: ['gameWord'],
+ mounted() {
+   console.log(this.gameWord)
+ }
 }
 </script>
 

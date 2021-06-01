@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-    <template v-if="palavrasErradas.length === chances">
+    <template v-if="letrasErradas.length === chances">
       <h1>JOGO ENCERRADO, VOCÊ PERDEU!</h1>
       <button @click="newGame"> JOGAR NOVAMENTE</button>
     </template>
@@ -10,7 +10,11 @@
         <button @click="newGame"> JOGAR NOVAMENTE</button>
         <h1 class="text-success font-weigth-bold"> VOCÊ GANHOU, PARABÉNS!!!</h1>
       </template>
-      <span class="chances"> Você tem {{ chances - palavrasErradas.length }}</span>
+      <div class="image">
+        <div class="backdrop" :style="{height: frontImage}"></div>
+        <img src="@/assets/hangman.png" />
+      </div>
+      <span class="chances"> Você tem {{ chances - letrasErradas.length }}</span>
       <palavras :gameWord=gameWord></palavras>
       <click :letters="letters"></click>
       <!-- <div class="letras text-center">
@@ -59,7 +63,9 @@ export default {
       ],
       gameWord:[],
       palavrasClicacas:[],
-      palavrasErradas:[]
+      letrasErradas:[],
+
+      frontImage: '100%'
     }
   },
   methods: {
@@ -72,7 +78,7 @@ export default {
       this.winner = false;
       this.gameWord= []
       this.palavrasClicacas = []
-      this.palavrasErradas = []
+      this.letrasErradas = []
     },
     selectedWord() {
       this.wordSelected = Math.floor(Math.random() * this.words.length)
@@ -88,16 +94,20 @@ export default {
     addLetter(letter) {
       // this.$emit('EVENT', {'test': true})
       this.palavrasClicacas.push(letter)
+
       let wrong = true
-      this.word.forEach((element,index) => {
+
+      this.word.forEach((element, index) => {
         if(element === letter) {
-          this.$set(this.gameWord,index,letter)
+          this.$set(this.gameWord, index, letter)
           wrong = false
         }
-      });
+      })
+
       if(wrong){
-        this.palavrasErradas.push(letter)
+        this.letrasErradas.push(letter)
       }
+
       this.terminou()
     }
   },
@@ -113,5 +123,20 @@ export default {
 .gameWord{
   border-bottom: 2px solid red;
   margin-right: 3px;
+}
+img {
+  display: block;
+}
+
+.image {
+  position: relative;
+}
+
+.backdrop {
+  position: absolute;
+  background: white;
+  top: 0;
+  left: 0;
+  width: 100%;
 }
 </style>
