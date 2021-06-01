@@ -3,6 +3,10 @@
     <template v-if="letrasErradas.length === chances">
       <h1>JOGO ENCERRADO, VOCÊ PERDEU!</h1>
       <button @click="newGame"> JOGAR NOVAMENTE</button>
+      <div class="image">
+        <div class="backdrop" :style="{height: frontImage}"></div>
+        <img src="@/assets/hangman.png" />
+      </div>
     </template>
     <template v-else>
       <h1>Jogo Forca</h1>
@@ -17,11 +21,6 @@
       <span class="chances"> Você tem {{ chances - letrasErradas.length }}</span>
       <palavras :gameWord=gameWord></palavras>
       <click :letters="letters"></click>
-      <!-- <div class="letras text-center">
-          <span class="" v-for="(letter, index) in letters" :key="index">
-            <button @click="addLetter(letter)">{{ letter }} </button>
-          </span>
-      </div> -->
     </template>
     </div>
     
@@ -73,6 +72,7 @@ export default {
       this.clean()
       this.selectedWord()
       this.makeGame()
+      this.frontImage = '100%'
     },
     clean(){
       this.winner = false;
@@ -106,6 +106,27 @@ export default {
 
       if(wrong){
         this.letrasErradas.push(letter)
+
+        switch(this.letrasErradas.length) {
+          case 0:
+            this.frontImage = '100%'
+            break
+          case 1:
+            this.frontImage = '80%'
+            break
+          case 2:
+            this.frontImage = '60%'
+            break
+          case 3:
+            this.frontImage = '40%'
+            break
+          case 4:
+            this.frontImage = '20%'
+            break
+          case 5:
+            this.frontImage = '0%'
+            break
+        }
       }
 
       this.terminou()
