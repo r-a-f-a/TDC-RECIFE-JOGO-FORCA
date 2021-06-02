@@ -1,5 +1,16 @@
 # TDC RECIFE - JOGO DA FORCA
 
+## Next Step's
+
+[_] WebSocket
+[_] Multiplayers
+[_] 3D Model
+[_] Private room
+[_] Dynamic challenges and tips
+
+
+
+
 ## Project setup
 ```
 npm install
