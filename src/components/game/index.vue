@@ -151,6 +151,8 @@ img {
 
 .image {
   position: relative;
+  display: flex;
+  justify-content: center;
 }
 
 .backdrop {
