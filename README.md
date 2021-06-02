@@ -2,12 +2,13 @@
 
 ## Next Step's
 
-[_] WebSocket
-[_] Multiplayers
-[_] 3D Model
-[_] Private room
-[_] Dynamic challenges and tips
-
+```
+[] WebSocket
+[] Multiplayers
+[] 3D Model
+[] Private room
+[] Dynamic challenges and tips
+```
 
 
 
